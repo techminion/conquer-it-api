@@ -10,6 +10,7 @@ import { UsersModule } from './users/users.module';
 
 import { MailerModule } from '@nestjs-modules/mailer';
 import { constants } from './config/constants';
+import { GoalsModule } from './goals/goals.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { constants } from './config/constants';
         },
       },
     }),
+    GoalsModule,
   ],
   controllers: [AppController],
   providers: [

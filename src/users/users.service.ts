@@ -25,7 +25,7 @@ export class UsersService {
     return userProfile;
   }
 
-  async findByEmail(email: string): Promise<UserDocument | null> {
+  async findByEmail(email: string): Promise<User | null> {
     try {
       const user = await this.userModel.findOne({ email }).lean().exec();
       if (!user) {
