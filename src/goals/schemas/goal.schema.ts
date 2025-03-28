@@ -1,6 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
-import { TaskDocument, TaskSchema } from './task.schema';
 
 export type GoalDocument = Goal & Document;
 
@@ -21,8 +20,8 @@ export class Goal {
   @Prop()
   description: string;
 
-  @Prop({ type: [{ type: TaskSchema, ref: 'Task' }], default: [] })
-  tasks: Types.DocumentArray<TaskDocument>;
+  @Prop({ type: [{ type: Types.ObjectId, ref: 'Task' }], default: [] })
+  tasks: Types.ObjectId[];
 }
 
 export const GoalSchema = SchemaFactory.createForClass(Goal);

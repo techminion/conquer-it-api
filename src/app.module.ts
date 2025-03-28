@@ -11,6 +11,7 @@ import { UsersModule } from './users/users.module';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { constants } from './config/constants';
 import { GoalsModule } from './goals/goals.module';
+import { OpenAiService } from './open-ai/open-ai.service';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { GoalsModule } from './goals/goals.module';
       useClass: JwtAuthGuard,
     },
     JwtStrategy,
+    OpenAiService,
   ],
 })
 export class AppModule {}

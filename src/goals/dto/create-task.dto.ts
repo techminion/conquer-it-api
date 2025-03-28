@@ -8,7 +8,7 @@ export class CreateTaskDto {
   dueDate: Date;
 
   @IsBoolean()
-  completed: boolean;
+  completed?: boolean;
 
   @IsString()
   description: string;

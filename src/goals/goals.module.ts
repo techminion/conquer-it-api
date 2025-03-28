@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import { OpenAiService } from 'src/open-ai/open-ai.service';
 import { User, UserSchema } from 'src/users/user.schema';
 import { UsersService } from 'src/users/users.service';
 import { GoalsController } from './goals.controller';
@@ -15,7 +16,7 @@ import { Task, TaskSchema } from './schemas/task.schema';
       { name: User.name, schema: UserSchema },
     ]),
   ],
-  providers: [GoalsService, UsersService],
+  providers: [GoalsService, UsersService, OpenAiService],
   controllers: [GoalsController],
 })
 export class GoalsModule {}

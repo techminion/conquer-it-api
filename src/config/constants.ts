@@ -25,4 +25,7 @@ export const constants = {
     from: process.env.FROM_EMAIL,
     fromName: process.env.FROM_NAME,
   },
+  openAI: {
+    apiKey: process.env.OPENAI_API_KEY,
+  },
 };
