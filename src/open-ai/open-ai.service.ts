@@ -13,16 +13,37 @@ export class OpenAiService {
 
   async generateTasks(goal: string, duration: string) {
     try {
-      const prompt = `You are an expert productivity coach. Based on the goal and duration, generate a structured list of tasks with due dates.
-      
-      Goal: "${goal}"
-      Duration: "${duration}"
-      
-      Provide a JSON response with the format:
-      [
-        { "name": "Task 1", "description": "Description 1", "dueDate": "YYYY-MM-DD" },
-        { "name": "Task 2", "description": "Description 2", "dueDate": "YYYY-MM-DD" }
-      ]`;
+      const prompt = `You are an expert productivity coach and task planner.
+
+                    Given a specific goal and a duration, break down the goal into a structured list of actionable tasks that guide someone step-by-step toward achieving that goal. Each task should be logically sequenced, spread across the entire duration, and include a short description and a due date.
+
+                    Assume today's date is "${new Date()}" and distribute tasks accordingly.
+
+                    Inputs:
+                    - Goal: "${goal}"
+                    - Duration: "${duration}" (e.g., "14 days", "1 month", "6 weeks")
+
+                    Output format (JSON array):
+                    [
+                      {
+                        "name": "Task Name 1",
+                        "description": "Brief description of what the user needs to do.",
+                        "dueDate": "YYYY-MM-DD"
+                      },
+                      {
+                        "name": "Task Name 2",
+                        "description": "Brief description of the next step.",
+                        "dueDate": "YYYY-MM-DD"
+                      }
+                      ...
+                    ]
+
+                    Ensure the output includes at least 5 tasks, unless the duration is very short. Tasks should be:
+                    - Actionable
+                    - Clear and specific
+                    - Time-distributed across the full duration
+
+                    Do not include any explanation or extra commentary—only return the JSON array.`;
 
       const response = await this.openai.chat.completions.create({
         model: 'gpt-4o-mini',
